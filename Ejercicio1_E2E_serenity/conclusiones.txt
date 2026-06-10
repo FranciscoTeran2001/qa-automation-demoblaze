@@ -1,0 +1,52 @@
+CONCLUSIONES Y HALLAZGOS
+1. HALLAZGOS
+    Al agregar un producto al carrito, la página dispara una alerta. Fue necesario implementar 
+    un switchTo().alert() para aceptarla antes de continuar la prueba.
+
+    Para poder acceder al carrito de compras se tuvieron complicaciones debido a que
+    la imagen de un producto obstruía el click para ingresar al carrito, por lo que se tuvo que
+    hacer ajustes usando JavascriptExecutor para que pudiera acceder al botón.
+
+    La página carga los productos de forma asíncrona. Se implementaron esperas
+    (WebDriverWait) para garantizar que los elementos estuvieran
+    disponibles antes de interactuar con ellos y que no existieran errores al momento 
+    de realizar la prueba.
+
+    Se tenían ciertas incertidumbres con las etiquetas de css ya que algunos elementos no tenían id como "Home"
+    por lo que se optó por buscar por el texto específico.
+
+    La página no requiere autenticación para el flujo de compra probado por lo que no se cubren 
+    escenarios de login.
+
+    El formulario no está organizado ni validado de una forma adecuada para que el usuario comprenda 
+    ciertos parámetros como el mes o el año.
+
+    El diseño de la página le falta mejorar la parte responsive, ya que los elementos se desordenan al momento
+    de reducir el tamaño de la pantalla.
+
+2. DISEÑO
+  Se eligió Serenity BDD como framework principal por su integración nativa
+  con Cucumber y su capacidad de generar reportes HTML detallados sin
+  configuración adicional.
+
+  Se usó el patrón Screenplay/Steps para separar la lógica de interacción
+  (CompraActions) de la definición de elementos (DemoblazePage) y los
+  pasos de prueba (CompraStepDefinitions), siguiendo el principio
+  de responsabilidad única.
+
+  Los datos de prueba (productos y formulario) se parametrizaron usando
+  DataTables de Cucumber, facilitando la modificación sin tocar código.
+
+
+3. CONCLUSIONES
+    La automatización del flujo de compra en Demoblaze fue exitosa y
+    reproducible con el comando mvn clean verify.
+
+    Serenity BDD demostró ser una herramienta robusta para pruebas E2E,
+    generando reportes de alta calidad que permiten trazabilidad completa
+    de cada paso ejecutado. Si bien no había utilizado Serenity anteriormente,
+    pude desarrollar con facilidad ya que tenía conocimientos de selenium y 
+    cucumber.
+
+    El uso de esperas fue clave para la estabilidad de la prueba
+    frente a los tiempos de respuesta variables de la aplicación web.

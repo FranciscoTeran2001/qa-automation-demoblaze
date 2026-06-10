@@ -1,0 +1,49 @@
+CONCLUSIONES Y HALLAZGOS
+
+1. HALLAZGOS
+   Escenario: Crear un nuevo usuario en signup
+   Al registrar un usuario exitosamente, la API responde con HTTP 200
+   y un cuerpo vacio (""). Esto es una mala practica en el backend ya
+   que no se informa claramente al cliente que el recurso fue creado.
+   Lo correcto segun REST seria retornar HTTP 201.
+
+   Escenario: Intentar crear un usuario ya existente
+   La API no utiliza un codigo de error adecuado como HTTP 409
+   para indicar duplicidad. Devuelve HTTP 200 con un mensaje de error en
+   el cuerpo JSON: {"errorMessage": "This user already exist."}. Esto
+   dificulta la deteccion automatica de errores sin inspeccionar el body.
+
+   Escenario: Login con usuario y password correcto
+   La API devuelve un token de autenticacion en el cuerpo de la respuesta
+   como texto plano, no en un header de Authorization ni en un campo JSON
+   estandar. Esto no sigue las convenciones REST modernas donde se esperaria
+   un Bearer token en los headers de respuesta.
+
+   Escenario: Login con usuario y password incorrecto
+   Al igual que en signup, la API no utiliza HTTP 401 para
+   credenciales invalidas. Devuelve HTTP 200 con un campo errorMessage:
+   {"errorMessage": "Wrong password."}. Esto no es una practica REST
+   estandar y puede confundir a herramientas o clientes que evaluan el
+   codigo de estado HTTP para determinar el exito de la operacion.
+
+
+2. CONCLUSIONES
+   La API de Demoblaze funciona correctamente en terminos de logica de
+   negocio: registra usuarios nuevos, detecta duplicados, valida
+   credenciales y genera tokens de sesion.
+
+   La API no sigue correctamente las convenciones REST:
+    - Utiliza HTTP 200 para todos los casos, incluyendo errores.
+    - Los errores deberian comunicarse con codigos HTTP apropiados
+      en lugar de embeberse en el body.
+    - El token de autenticacion se retorna en el cuerpo como texto
+      plano en lugar de un campo JSON estructurado o un header.
+
+   Karate Framework demostro ser una herramienta eficiente para pruebas
+   de API REST, permitiendo definir escenarios en lenguaje Gherkin
+   realizar validaciones del status HTTP y del cuerpo
+   de respuesta de forma sencilla y legible.
+
+   La automatizacion con Karate facilita la deteccion rapida de
+   regresiones en los endpoints, ya que los escenarios son reutilizables
+   y de facil mantenimiento.

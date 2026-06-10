@@ -7,7 +7,7 @@ El objetivo es validar que un usuario pueda agregar productos al carrito, visual
 ## Tecnologías y Herramientas Utilizadas
 * **Lenguaje:** Java Development Kit (JDK) - Versión 17
 * **Framework principal:** Serenity BDD
-* **Patrón de diseño:** Page Object Model
+* **Patrón de diseño:** Screenplay Pattern
 * **Gestor de dependencias:** Maven
 * **Navegador de prueba:** Google Chrome
 
@@ -33,7 +33,7 @@ Para ejecutar este proyecto de forma local, debe tener instalado y configurado l
 **Paso 1: Navegar a la carpeta del proyecto**
 Asegúrese de abrir su terminal y situese dentro de la carpeta específica de este ejercicio:
 ```
-cd ruta/hacia/Ejercicio1_E2E_serenity
+cd qa-automation-demoblaze/Ejercicio1_E2E_serenity
 ```
 
 **Paso 2: Ejecutar las pruebas**
@@ -48,3 +48,9 @@ Una vez finalizada la ejecución, Serenity generará un reporte detallado. Puede
 target/site/serenity/index.html
 ```
 Haga doble clic en el archivo `index.html` para abrirlo en su navegador.
+
+De igualmanera se encuentra el reporte de la prueba que se realizó con anterioridad. Puede abrirlo navegando a la siguiente ruta en su explorador de archivos:
+```
+Reporte/serenity/index.html
+```
+
